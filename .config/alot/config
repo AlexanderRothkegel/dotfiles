@@ -1,0 +1,30 @@
+# For a complete list and description of options, please refer to:
+# http://alot.readthedocs.org/en/latest/configuration/index.html#config-options
+
+# editor command
+# if unset, alot will first try the EDITOR env variable, then file /usr/bin/editor
+#editor_cmd = nano
+search_threads_sort_order = newest_first
+show_count_in_tag_list = messages
+#theme = solarized_dark
+prefer_plaintext = True
+[accounts]
+  [[google]]
+    address = alexander.rothkegel@gmail.com 
+    realname = Alexander Rothkegel
+    sent_box = maildir:///home/alex/.mail/alexander.rothkegel@gmail.com/Sent
+    draft_box = maildir:///home/alex/.mail/alexander.rothkegel@gmail.com/Draft
+    sent_tags = sent,
+    sendmail_command = msmtp -a google -t
+    [[[abook]]]
+        type = shellcommand
+        command = pc_query -m
+        regexp = '^(?P<email>[^@]+@[^\t]+)\t+(?P<name>[^\t]+)'
+        ignorecase = True
+
+[bindings]
+[[search]]
+    S = toggletags spam
+
+[[thread]]
+   A = pipeto 'pycard-import -a abook'

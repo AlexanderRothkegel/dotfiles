@@ -1,0 +1,44 @@
+
+
+
+[general]
+ui = TTY.TTYUI
+accounts = AlexanderRothkegel
+pythonfile=~/DropboxPrivate/bin/keyring_helper.py
+fsync = False
+
+[Account AlexanderRothkegel]
+localrepository = AlexanderRothkegel-Local
+remoterepository = AlexanderRothkegel-Remote
+status_backend = sqlite
+postsynchook = notmuch new
+
+[Repository AlexanderRothkegel-Local]
+type = Maildir
+localfolders = ~/.mail/alexander.rothkegel@gmail.com 
+nametrans = lambda folder: {'drafts':  '[Gmail]/Drafts',
+                            'sent':    '[Gmail]/Sent Mail',
+                            'flagged': '[Gmail]/Starred',
+                            'trash':   '[Gmail]/Trash',
+                            'archive': '[Gmail]/All Mail',
+                            }.get(folder, folder)
+
+[Repository AlexanderRothkegel-Remote]
+maxconnections = 1
+type = Gmail
+remoteuser = alexander.rothkegel@gmail.com
+#remotepasseval = get_keychain_pass(account="steve@stevelosh.com", server="imap.gmail.com")
+realdelete = no
+nametrans = lambda folder: {'[Gmail]/Drafts':    'drafts',
+                            '[Gmail]/Sent Mail': 'sent',
+                            '[Gmail]/Starred':   'flagged',
+                            '[Gmail]/Trash':     'trash',
+                            '[Gmail]/All Mail':  'archive',
+                            }.get(folder, folder)
+folderfilter = lambda folder: folder not in ['[Gmail]/Trash',
+                                             'Nagios',
+                                             'Django',
+                                             'Flask',
+                                             '[Gmail]/Important',
+                                             '[Gmail]/Spam',
+															]
