@@ -1,7 +1,7 @@
 # The following lines were added by compinstall
 zstyle ':completion:*' completer _expand _complete _ignored _match _correct _approximate _prefix
 zstyle ':completion:*' matcher-list 'm:{[:lower:]}={[:upper:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'r:|[._-]=** r:|=**' 'l:|=* r:|=*'
-zstyle ':completion:*' max-errors 2
+zstyle ':completion:*' max-errors 1 
 zstyle :compinstall filename '/home/alex/.zshrc'
 
 autoload -Uz compinit
